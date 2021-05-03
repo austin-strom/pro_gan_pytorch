@@ -488,7 +488,7 @@ class ConditionalProGAN:
         """
 
         from torch.optim import Adam
-        self.custom_loss = np.NINF
+        self.caption_loss = np.NINF
         
         # Create the Generator and the Discriminator
         self.gen = Generator(depth, latent_size, use_eql=use_eql).to(device)
@@ -522,6 +522,12 @@ class ConditionalProGAN:
             from pro_gan_pytorch.CustomLayers import EMA
             self.ema = EMA(self.ema_decay)
             self.__register_generator_to_ema()
+    
+    def __update_caption_loss(self, loss):
+        self.caption_loss = loss
+        
+    def __get_caption_loss(self):
+        return self.caption_loss
 
     def __register_generator_to_ema(self):
         for name, param in self.gen.named_parameters():

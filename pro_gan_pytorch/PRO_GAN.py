@@ -488,7 +488,8 @@ class ConditionalProGAN:
         """
 
         from torch.optim import Adam
-
+        self.custom_loss = np.NINF
+        
         # Create the Generator and the Discriminator
         self.gen = Generator(depth, latent_size, use_eql=use_eql).to(device)
         self.dis = ConditionalDiscriminator(depth, latent_size,

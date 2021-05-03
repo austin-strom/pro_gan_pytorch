@@ -613,7 +613,7 @@ class ConditionalProGAN:
 
         return loss_val / self.n_critic
 
-    def optimize_generator(self, noise, latent_vector, depth, alpha, caption_loss):
+    def optimize_generator(self, noise, latent_vector, depth, alpha, caption_loss=0.0):
         """
         performs one step of weight update on generator for the given batch_size
         :param noise: input random noise required for generating samples

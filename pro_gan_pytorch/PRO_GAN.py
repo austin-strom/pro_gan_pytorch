@@ -628,6 +628,9 @@ class ConditionalProGAN:
 
         # TODO: Change this implementation for making it compatible for relativisticGAN
         loss = self.loss.gen_loss(None, fake_samples, latent_vector, depth, alpha)
+        initial_loss = loss
+        loss += caption_loss
+        print("DEBUGGING: ", "Initial Loss - ", initial_loss, "Caption Loss - ", caption_loss, "Total Loss - ", loss)
 
         # optimize the generator
         self.gen_optim.zero_grad()
